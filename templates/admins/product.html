@@ -1,0 +1,27 @@
+{% extends 'admins/base.html' %}
+{% load static %}
+
+{% block title %}Admin Panel - Products{% endblock %}
+
+{% block content %}
+<div class="container">
+
+<section class="products">
+	<h1 class="heading">all products</h1>
+
+	<div class="box-container">		
+		{% for p in products %}
+		<div class="box">
+			<img src="{% static 'shopping/images/'|add:p.image %}" height="100" alt="OOPS">
+			<h3>{{p.name}}</h3>
+			<div class="price">${{p.price}}</div>	
+		</div>
+		{% endfor %}
+	</div>
+</section>
+
+</div>
+
+<!-- custom js file link  -->
+<script src="{% static 'shopping/js/script.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,31 @@
+{%extends 'base.html'%}
+
+{% block title%} Aloha-Login {% endblock %}
+
+
+{% block content %}
+<div class="header">
+		<h2>Login</h2>
+		</div>
+		<form method="POST" action="/login/">
+			{% csrf_token %}
+			<!-- <?php include('errors.php'); ?> -->
+			<div class="input-group">
+				<label>Username</label>
+				<input type="text" name="username" ></input>
+			</div>
+			<div class="input-group">
+				<label>Password</label>
+				<input type="password" name="password"></input>
+			</div><br>
+			<!-- div class="input-group"-->
+				<button type="submit" class="btn" name="login_user" value="login_user">Login</button>
+			<!--/div-->
+			<p><br>
+				<center>Not a member yet?</center>
+				<a href="/register/" style="color:white">
+					<center>Sign up></center>
+				</a>
+			</p>
+		</form>
+{% endblock %}

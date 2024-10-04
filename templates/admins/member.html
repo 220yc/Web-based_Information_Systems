@@ -1,0 +1,42 @@
+{% extends 'admins/base.html' %}
+{% load static %}
+
+{% block title %}Admin Panel - Members{% endblock %}
+
+{% block content %}
+<section class="display-product-table">
+
+   <table>
+      <thead>
+         <th>member name</th>
+         <th>member email</th>
+         <th>member password</th>
+         <th>action</th>
+      </thead>
+
+      <tbody>
+      	{% for m in members %}
+	         <tr>
+	            <td>{{m.username}}</td>          
+	            <td>{{m.email}}</td>
+	            <td>{{m.password}}</td>
+	            <td>
+	               <a href="{% url 'del-user-url' m.id %}" class="delete-btn" onclick="return confirm('are your sure you want to delete this member?');"> <i class="fas fa-trash"></i> delete </a>
+	            </td>
+	         </tr>
+	         {% empty %}
+         	<tr>
+         		<td></td>
+         		<td></td>
+         		<td></td>
+         		<td></td>
+         	</tr>
+      	{% endfor %}
+      </tbody>
+   </table>
+
+</section>
+
+<!-- custom js file link  -->
+<script src="{% static 'shopping/js/script.js' %}"></script>
+{% endblock %}

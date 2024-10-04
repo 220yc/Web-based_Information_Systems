@@ -1,0 +1,30 @@
+{% extends 'admin/base.html' %}
+
+{% block title %}Admin Panel-Edit{% endblock %}
+
+{% block messages %}
+	{% for message in messages %}
+		<div class="message">
+			<span>message</span>
+			<i class="fas fa-times" onclick="this.parentElement.style.display = `none`;"></i>
+		</div>
+	{% endfor %}
+{% endblock %}
+
+{% block content %}
+	<section class="edit-form-container">
+		{% for p in upd_product %}
+		<form action="" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+		    <img src="uploaded_img/{{% p.image %}} ?>" height="200" alt="">
+		    <input type="hidden" name="update_p_id" value="{{% p.id %}}">
+		    <input type="text" class="box" required name="update_p_name" value="{{% p.name %}}">
+		    <input type="number" min="0" class="box" required name="update_p_price" value="{{% p.price %}}">
+		    <input type="file" class="box" required name="update_p_image" accept="image/png, image/jpg, image/jpeg">
+		    <input type="submit" value="update_product" name="update_product" class="btn">
+		    <input type="reset" value="cancel" id="close-edit" class="option-btn">
+	    </form>
+		{% endfor %}
+		<!-- <script>document.querySelector('.edit-form-container').style.display = 'flex';</script> -->
+	</section>
+{% endblock %}

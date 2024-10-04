@@ -1,0 +1,32 @@
+{% extends 'member/base.html' %}
+{% load static %}
+
+{% block title %}Member Panel-Products{% endblock %}
+
+{% block content %}
+
+<div class="container">
+<section class="products">
+   <h1 class="heading">latest products</h1>
+
+   <div class="box-container">
+   	{% for p in products%}
+		<form action="/member/" method="POST">
+			{% csrf_token %}
+			<div class="box">
+				<img src="{% static 'shopping/images/'|add:p.image %}" alt="">
+				<h3>{{p.name}}</h3>
+				<div class="price">${{p.price}}</div>
+				<input type="hidden" name="product_name" value="{{p.name}}">
+				<input type="hidden" name="product_price" value="{{p.price}}">
+				<input type="hidden" name="product_image" value="{{p.image}}">
+				<input type="submit" class="btn" value="add_to_cart" name="add_to_cart">
+			</div>
+		</form>
+    {% endfor %}
+   </div>
+
+</section>
+</div>
+
+{% endblock %}

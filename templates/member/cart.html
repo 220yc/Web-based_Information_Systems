@@ -1,0 +1,57 @@
+{% extends 'member/base.html' %}
+{% load static %}
+
+{% block title %}Member Panel-Cart{% endblock %}
+
+{% block content %}
+<div class="container">
+	<section class="shopping-cart">
+	   <h1 class="heading">shopping cart</h1>
+		   <table>
+			      <thead>
+			         <th>image</th> <th>name</th> <th>price</th> <th>quantity</th> <th>subtotal</th> <th>action</th>
+			      </thead>
+
+			      <tbody>
+			      	{% for cart in carts%}
+			         <tr>
+			            <td><img src="{% static 'shopping/images/'|add:cart.image %}" height="100" alt=""></td>
+			            <td>{{cart.product_name}}</td>
+			            <td>${{cart.price}}</td>
+			            <td>
+			               <form action="{% url 'user-cart-update-url' cart.id%}" method="post">
+			               	{% csrf_token %}
+			                  <input type="number" name="update_quantity" min="1"  value="{{cart.quantity}}" > >
+			                  <input type="submit" value="update" name="update_update_btn">
+			               </form>   
+			            </td>
+			            <td>${{cart.subtotal}}</td>
+			            <td><a href="{% url 'user-cart-remove-url' cart.id%}" onclick="return confirm('remove item from cart?')" class="delete-btn"> <i class="fas fa-trash"></i> remove</a></td>
+			         </tr>
+			         {% endfor %}
+
+				        <thead>
+				         <th></th>
+				         <th colspan="3"></th>
+				         <th>total price</th>
+				         <th></th>
+				      </thead>
+					   <tr class="table-bottom">
+			            <td><a href="{% url 'user-prod-url'%}" class="option-btn" style="margin-top: 0;">continue shopping</a></td>
+			            <td colspan="3">grand total</td>
+			            <td>${{grandtotal}}</td>
+			            <td><a href="/member/cart/delete/" onclick="return confirm('are you sure you want to delete all?\n(clear the cart and back to home)');" class="delete-btn"> <i class="fas fa-trash"></i> delete all </a></td>
+         			</tr>
+			      </tbody>
+		   </table>
+		   <div class="checkout-btn">
+		   	{% if grandtotal > 1 %}
+			    <a class="btn" href="/member/cart/checkout/">go checkout</a>
+			{% else %}
+			    <a class="btn disabled">go checkout</a>
+			{% endif %}
+		   </div>
+	</section>
+</div>
+{{subtotal}}
+{% endblock %}

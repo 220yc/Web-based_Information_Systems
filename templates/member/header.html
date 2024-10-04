@@ -1,0 +1,26 @@
+<header class="header">
+   <div class="flex">
+      <a href="{% url 'user-prod-url' %}" class="logo">Aloha</a>
+      <h2 style="text-align:center;">
+      <font color="#FFF">
+         username : {{user.username}}
+         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+         email :  {{user.email}}
+         &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+         &emsp;&emsp;&emsp;
+      </font>
+      </h2>
+
+      <nav class="navbar">
+         <a href="{% url 'user-prod-url' %}">view products</a> 
+      <a href="{% url 'user-cart-url' %}" class="cart">cart
+         <span>{{cart_count}}</span>
+      </a>
+      <a href="/logout/" style="color: red;">logout</a></p>
+      </nav>
+
+      <div id="menu-btn" class="fas fa-bars"></div>
+
+   </div>
+
+</header>

@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>{% block title %}{% endblock %}</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'style1.css' %}"></link>
+		</head>
+	<body>
+		<header>
+			<h2 class="logo">Aloha</h2>
+			<nav class="navigation">
+				<a href="#">Home</a>
+				<a href="#">About</a>
+			{% if formtype == "login" %}
+				<a href="/register/">
+				<button class="btnLogin-popup">
+					Register
+				</button>
+				</a>
+			{% else %}
+				<a href="/login/">
+				<button class="btnLogin-popup">
+					Login
+				</button>
+				</a>
+			{% endif %}
+			</nav>
+		</header>
+
+		<br>
+		<br>
+		<br>
+
+		{% if len_errors > 0 %}
+			{% for error in errors %}
+				<div class="error">	{{error}}</div>
+				<br>
+			{%  endfor %}	
+		{% endif %}
+
+		{% block content %}{% endblock %}
+	</body>
+</html>

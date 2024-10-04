@@ -1,0 +1,71 @@
+{% extends 'member/base.html'%}
+
+{% block title %}Member Panel-Checkout{% endblock %}
+
+{% block content %}
+
+	{% if flag %}
+		<div class='order-message-container'>
+			<div class='message-container'>
+				<h3>Thanks For Shopping!</h3>
+				<h4>Order confirmed. You carts are clear now:)</h4>
+				<div class='order-detail'>
+					<span>{{str_total_product}}</span>
+					<span class='total'> total : ${{grandtotal}}  </span>
+				</div>
+				<div class='customer-details'>
+					<p> your name : <span>{{name}}</span> </p>
+					<p> your number : <span>{{number}}</span> </p>
+					<p> your payment mode : <span>{{method}}</span> </p>
+					<p>(*pay when product arrives*)</p>
+				</div>
+				<a href='/member/' class='btn'>continue shopping</a>
+			</div>
+		</div>
+	{% endif %}
+
+<div class="container">
+	<section class="checkout-form">
+		<h1 class="heading">complete your order</h1>
+		<form action="" method="post">
+			{% csrf_token %}
+			<div class="display-order">
+				{% if carts %}
+				 	{% for cart in  carts%}
+				 		<span>{{cart.product_name}}({{cart.quantity}})</span>
+				 	{% endfor %}
+			 	{% else %}
+			 	    <div class='display-order'><span>your cart is empty!</span></div>
+			 	{% endif %}
+				<span class="grand-total"> Total : ${{grandtotal}} </span>
+			</div>
+
+			<div class="flex">
+				<div class="inputBox">
+				<span>your name</span>
+				<input type="text" placeholder="enter your name" name="name" required>
+				</div>
+
+				<div class="inputBox">
+				  <span>your phone number</span>
+				  <input type="number" placeholder="enter your phone number" name="number" required>
+				</div>
+				<div class="inputBox">
+				  <span>payment method</span>
+				  <select name="method">
+				     <option value="CS" selected>cash</option>
+				     <option value="CR">credit card</option>
+				  </select>
+				</div>
+			</div>
+
+         	<input type="submit" value="order now" name="order_btn" class="btn">
+        </form>
+    </section>
+</div>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,49 @@
+{% extends 'admins/base.html' %}
+{% load static %}
+
+{% block title %}Admin Panel - Members{% endblock %}
+
+{% block content %}
+<section class="display-product-table">
+
+   <table>
+      <thead>
+         <th>member name</th>
+         <th>member phone</th>
+         <th>pay method</th>
+         <th>total products</th>
+         <th>total price</th>
+         <th>action</th>
+
+      </thead>
+
+      <tbody>
+      	{% for o in orders %}
+	         <tr>
+	            <td>{{o.name}}</td>          
+	            <td>{{o.phone}}</td>
+	            <td>{{o.get_pay_method_display}}</td>
+	            <td>{{o.total_products}}</td>
+	            <td>{{o.total_price}}</td>
+	            
+	            <td>
+	               <a href="{% url 'del-order-url' o.id %}" class="delete-btn" onclick="return confirm('are your sure you want to delete this order?');"> <i class="fas fa-trash"></i> delete </a>
+	            </td>
+	         </tr>
+	         {% empty %}
+         	<tr>
+         		<td></td>
+         		<td></td>
+         		<td></td>
+         		<td></td>
+         	</tr>
+      	{% endfor %}
+      </tbody>
+   </table>
+
+
+</section>
+
+<!-- custom js file link  -->
+<script src="{% static 'shopping/js/script.js' %}"></script>
+{% endblock %}

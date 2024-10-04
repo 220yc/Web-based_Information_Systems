@@ -1,0 +1,73 @@
+
+
+# def updonject(request,upd_id):
+# 	messages = []
+
+# 	#if we got some args from from
+# 	if(request.method == 'POST'):
+# 		update_p_id = request.POST['update_p_id']
+# 		update_p_price = request.POST['update_p_price']
+# 		update_p_image = request.FILES['update_p_image'].name
+# 		try:
+# 			upd_product = models.Product.objects.get(id=upd_id)
+# 			upd_product.price = update_p_price
+# 			upd_product.image = update_p_image
+# 			upd_product.save()
+
+# 			upd_image_tmp_name = request.FILES['update_p_image'].temporary_file_path()
+# 			upd_image_folder = 'static/shopping/images/' + (update_p_image)
+
+# 			with open(upd_image_tmp_name, 'rb') as source_file:
+# 				with open(upd_image_folder, 'wb') as destination_file:
+# 					shutil.copyfileobj(source_file,destination_file)
+
+# 				messages.append("the product is updated")
+# 				return HttpResponseRedirect('/shopping/aindex/')
+# 		except:
+# 			messages.append("can't find the product")
+# 			return HttpResponseRedirect('/shopping/aindex/')
+
+# 	#or we just click the edit button
+# 	try:
+# 		upd_product = models.Product.objects.get(id=upd_id)
+# 		messages.append("get the product")
+# 	except:
+# 		messages.append("can't find the product")
+
+# 	return HttpResponseRedirect('/shopping/aedit/')
+
+
+	# update_flag = request.POST.get('update_product')
+	# if(update_flag):
+	# 	update_p_id = request.POST['update_p_id']
+	# 	update_p_name = request.POST['p_name']
+	# 	update_p_price = request.POST['p_price']
+	# 	update_p_image = request.FILES['p_image'].name
+	# 	update_p_image_tmp_name = request.FILES['p_image'].temporary_file_path()
+	# 	update_p_image_folder = 'static/shopping/images/' + (p_image)
+
+	# 	with open(update_p_image_tmp_name, 'rb') as source_file:
+	# 		with open(update_p_image_folder,'wb') as destination_file:
+	# 			shutil.copyfileobj(source_file,destination_file)
+		
+	# 	try:
+	# 		update_product = models.Product.objects.get(id=update_p_id)
+	# 		update_product.name = update_p_name
+	# 		update_product.price = update_p_price
+	# 		update_product.image = update_p_image
+	# 		update_product.save()
+	# 		shutil.move(update_p_image_tmp_name,update_p_image_folder)
+	# 		messages.append('product add succesfully')
+	# 		return HttpResponseRedirect('/mainsite/login/')
+	# 	except:
+	# 		messages.append('could not add the product')
+	# 		return HttpResponseRedirect('/mainsite/login/')
+	# try:
+	# 	products = models.Product.objects.all()
+	# except:
+	# 	pass
+
+	# if(request.GET['edit']):
+	# 	edit_id = request.GET['edit']
+	# 	edit_products = models.Product.objects.filter(id=edit_id)
+		
